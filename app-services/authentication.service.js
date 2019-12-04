@@ -44,6 +44,8 @@
         function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
 
+            $rootScope.isLogin = true;
+
             $rootScope.globals = {
                 currentUser: {
                     username: username,
@@ -61,6 +63,7 @@
         }
 
         function ClearCredentials() {
+            $rootScope.isLogin = false;
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';

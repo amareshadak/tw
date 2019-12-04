@@ -11,7 +11,7 @@
 
         localStorage.users =null;
 
-localStorage.users = `[{"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}]`;
+        localStorage.users = `[{"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}]`;
 
 
         vm.login = login;

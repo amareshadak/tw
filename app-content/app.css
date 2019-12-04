@@ -1,3 +1,7 @@
 ﻿a {
     cursor: pointer;
 }
+
+#ui-builder {
+    display: none;
+}
