@@ -7,8 +7,6 @@
     <!-- <link href="app-content/app.css" rel="stylesheet" /> -->
 
 
-
-
     
 
     <meta charset="utf-8">
@@ -37,6 +35,8 @@
 
     <!-- Libs -->
     <link rel="stylesheet" href="assets/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
+    
     <!-- Page -->
     <link rel="stylesheet" href="assets/css/pages/authentication.css">
 
@@ -48,31 +48,27 @@
 
 </head>
 <body>
+    
+
+        <toaster-container toaster-options="{'toaster-id': 'notification', 'time-out':{ 'toast-warning': 1000, 'toast-error': 0 }}">
+            </toaster-container>
+            <toaster-container toaster-options="{'toaster-id': 'page-validation', 'position-class': 'toast-bottom-center', 'limit': 5}">
+            </toaster-container>
         <div class="page-loader">
                 <div class="bg-primary"></div>
             </div>
 
-                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div style="margin: 0;text-align: center;" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
                 <div ng-view></div>
             
-    <div class="credits text-center">
-        <p>
-            <a href="http://jasonwatmore.com/post/2015/03/10/angularjs-user-registration-and-login-example-tutorial">AngularJS User Registration and Login Example</a>
-        </p>
-        <p>
-            <a href="http://jasonwatmore.com">JasonWatmore.com</a>
-        </p>
-    </div>
+   
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-animate.min.js" ></script>
     <script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
     <script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
-
-
-
-
-
+    
 
 
     <script src="assets/js/pace.js"></script>
@@ -82,12 +78,14 @@
     <script src="assets/js/sidenav.js"></script>
     <script src="assets/js/layout-helpers.js"></script>
     <script src="assets/js/material-ripple.js"></script>
+    <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
 
     <!-- Libs -->
     <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <!-- Demo -->
-    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+    <!-- <script src="assets/js/demo.js">
+    </script><script src="assets/js/analytics.js"></script> -->
 
 
 

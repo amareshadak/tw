@@ -5,13 +5,13 @@
         .module('app')
         .factory('FlashService', FlashService);
 
-    FlashService.$inject = ['$rootScope'];
-    function FlashService($rootScope) {
+    FlashService.$inject = ['$rootScope', 'toastr'];
+    function FlashService($rootScope, toastr) {
         var service = {};
 
         service.Success = Success;
         service.Error = Error;
-
+        service.Toaster = ShowToaster;
         initService();
 
         return service;
@@ -37,7 +37,7 @@
         function Success(message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
-                type: 'success', 
+                type: 'success',
                 keepAfterLocationChange: keepAfterLocationChange
             };
         }
@@ -48,6 +48,10 @@
                 type: 'error',
                 keepAfterLocationChange: keepAfterLocationChange
             };
+        }
+
+        function ShowToaster(message, type, title) {
+            toastr.error(message,title);
         }
     }
 

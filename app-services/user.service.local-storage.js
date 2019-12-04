@@ -29,6 +29,11 @@
             var deferred = $q.defer();
             var filtered = $filter('filter')(getUsers(), { id: id });
             var user = filtered.length ? filtered[0] : null;
+
+            //set static
+            var user = { "firstName": "admin", "lastName": "admin", "username": "admin", "password": "password", "id": 1 };
+
+
             deferred.resolve(user);
             return deferred.promise;
         }
@@ -105,7 +110,7 @@
         // private functions
 
         function getUsers() {
-            if(!localStorage.users){
+            if (!localStorage.users) {
                 localStorage.users = JSON.stringify([]);
             }
 
