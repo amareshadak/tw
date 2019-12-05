@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngCookies','toastr', 'ngAnimate'])
+        .module('app', ['ngRoute', 'ngCookies','toastr', 'ngAnimate','chart.js'])
         .config(config)
         .run(run);
 
