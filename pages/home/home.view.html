@@ -130,7 +130,17 @@
                 <div class="card mb-4">
                 <h6 class="card-header">Line chart</h6>
                 <div class="card-body">
-                <div id="am-xy-12" style="height: 400px"></div>
+                <div id="am-xy-12" style="height: 400px">
+                    <div class="container">
+                        
+                        <canvas id="line" class="chart chart-line" chart-data="data"
+                        chart-labels="labels" chart-series="series" chart-options="options"
+                        chart-dataset-override="datasetOverride" chart-click="onClick">
+                        </canvas
+                        
+                      </div>
+                
+                </div>
                 </div>
                 </div>
             </div>
