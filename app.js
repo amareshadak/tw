@@ -6,8 +6,14 @@
         .config(config)
         .run(run);
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    function config($routeProvider, $locationProvider) {
+    config.$inject = ['$routeProvider', '$locationProvider','$httpProvider'];
+    function config($routeProvider, $locationProvider,$httpProvider) {
+
+            //Enable cross domain calls
+            $httpProvider.defaults.useXDomain = true;
+      
+            //Remove the header used to identify ajax call  that would prevent CORS from working
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $routeProvider
             .when('/', {
                 controller: 'HomeController',
