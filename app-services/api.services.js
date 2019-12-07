@@ -15,7 +15,7 @@
         return service;
 
         function GetAll() {
-            return $http.get('http://15.206.55.22:8000/getData/6/').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(`http://15.206.35.51/api/machine/message/list/579397848997/?sku=1501cede7aab732f5de84f7e65d001e1`).then(handleSuccess, handleError('Error getting all users'));
         }
 
 
