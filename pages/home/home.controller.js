@@ -7,6 +7,10 @@
 
   HomeController.$inject = ['UserService', '$rootScope', '$scope', 'ApiService'];
   function HomeController(UserService, $rootScope, $scope, ApiService) {
+
+
+    localStorage.users = `[{"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}]`;
+
     $scope.isLoad = 1;
     initController();
 
