@@ -6,6 +6,9 @@
         .config(config)
         .run(run);
 
+
+       
+
     config.$inject = ['$routeProvider', '$locationProvider','$httpProvider'];
     function config($routeProvider, $locationProvider,$httpProvider) {
 
@@ -14,6 +17,9 @@
       
             //Remove the header used to identify ajax call  that would prevent CORS from working
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
+            $httpProvider.interceptors.push('APIInterceptor');
         $routeProvider
             .when('/', {
                 controller: 'HomeController',
@@ -60,3 +66,13 @@
     }
 
 })();
+
+
+angular.module('app').service('APIInterceptor', [function() {
+    var service = this;
+
+    service.request = function(config) {
+        config.headers.Authorization= 'Token ede31ff3350e15f182e9eec1412d4a9c861ddfca';
+        return config;
+    };
+}]);

@@ -11,14 +11,17 @@
         var service = {};
 
         service.GetAll = GetAll;
+        service.GetAllSku = GetAllSku;
       
         return service;
 
-        function GetAll() {
-            return $http.get(`http://15.206.35.51/api/machine/message/list/579397848997/?sku=1501cede7aab732f5de84f7e65d001e1`).then(handleSuccess, handleError('Error getting all users'));
+        function GetAll(sukid) {
+            return $http.get(`http://15.206.35.51/api/user/plant/message/list/?sku=${sukid}`).then(handleSuccess, handleError('Error getting all users'));
         }
 
-
+        function GetAllSku() {
+            return $http.get(`http://15.206.35.51/api/skuid/list/`).then(handleSuccess, handleError('Error getting all users'));
+        }
 
 
 

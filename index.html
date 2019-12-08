@@ -36,6 +36,10 @@
     <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="assets/libs/datatables/datatables.css">
 
+    <link rel="stylesheet" href="assets/libs/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap-multiselect/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="assets/libs/select2/select2.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css">
 
     <!-- Page -->
     <link rel="stylesheet" href="app-content/app.css">
@@ -54,7 +58,7 @@
         ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
         ng-if="flash" ng-bind="flash.message"></div>
 
-    <div ng-hide="isLogin" ng-view></div>
+    <!-- <div ng-hide="isLogin" ng-view></div> -->
 
     <div ng-show="isLogin" class="layout-wrapper layout-2">
         <div class="layout-inner">
@@ -188,6 +192,7 @@
 
     <!-- Libs -->
     <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="assets/libs/datatables/datatables.js"></script>
     <script src="assets/libs/eve/eve.js"></script>
     <script src="assets/libs/flot/flot.js"></script>
@@ -196,15 +201,18 @@
     <script src="assets/libs/chart-am4/charts.js"></script>
     <script src="assets/libs/chart-am4/animated.js"></script>
     <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
-
+    <script src="assets/libs/select2/select2.js"></script>
+    <script src="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-   
+    <script src="assets/libs/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="//rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
 
 
     <!-- Demo -->
     <script src="assets/js/demo.js"></script>
     <script src="assets/js/analytics.js"></script>
     <script src="assets/js/pages/tables_datatables.js"></script>
+    <script src="assets/js/pages/forms_selects.js"></script>
     <!-- <script src="assets/js/pages/dashboards_index.js"></script> -->
 
     <script src="app.js"></script>

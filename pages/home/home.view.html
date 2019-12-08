@@ -16,7 +16,7 @@
 
 
 <!-- [ content ] Start -->
-<div class="container-fluid flex-grow-1 container-p-y">
+<div class="container-fluid flex-grow-1 container-p-y" ng-init="test()">
     <h4 class="font-weight-bold py-3 mb-0"> My Dashboard</h4>
     <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
         <ol class="breadcrumb">
@@ -130,18 +130,20 @@
 
     </div>
     <div class="row">
+
+
+
+
+
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header with-elements">
                     <h6 class="card-header-title mb-0">Line chart</h6>
                     <div class="card-header-elements ml-auto">
-                        <label hidden class="text m-0">
-                            <span class="text-light text-tiny font-weight-semibold align-middle">SHOW STATS</span>
-                            <span class="switcher switcher-sm d-inline-block align-middle mr-0 ml-2"><input
-                                    type="checkbox" class="switcher-input" checked=""><span
-                                    class="switcher-indicator"><span class="switcher-yes"></span><span
-                                        class="switcher-no"></span></span></span>
-                        </label>
+                         
+                            <select id="selectsku" ng-model="selectsku" ng-change="changeSku(selectsku)" class="btn btn-default" data-style="btn-default">
+                                    <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
+                                </select>
                     </div>
                 </div>
                 <div class="card-body">
@@ -156,6 +158,30 @@
 
     </div>
 
+    
+        <div class="row">
+                <div class="col-sm-4 mb-3">
+                    <select class="selectpicker" data-style="btn-primary">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <select class="selectpicker" data-style="btn-success">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <select class="selectpicker" data-style="btn-warning">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+                </div>
+            </div>
     <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-4">
