@@ -60,7 +60,7 @@
         $scope.data.push(ul);
         $scope.data.push(bw);
         $scope.data.push(ll);
-        console.log($scope.data)
+        // console.log($scope.data)
       });
     }
 
