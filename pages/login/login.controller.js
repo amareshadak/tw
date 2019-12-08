@@ -9,7 +9,7 @@
     function LoginController($location, AuthenticationService, FlashService) {
         var vm = this;
 
-        // localStorage.users =null;
+        localStorage.users =null;
 
         localStorage.users = `[{"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}]`;
 

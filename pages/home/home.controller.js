@@ -114,7 +114,17 @@
     };
 
 
-
+    $scope.pielabels = ["Ok", "Overweight", "Underweight","Rejected"];
+    $scope.piedata = [30, 40, 10,20];
+    $scope.pieoptions = {
+      legend: {
+        display: true,
+        labels: {
+          fontColor: 'rgb(255, 99, 132)'
+        }
+      },
+     
+    };
 
 
 
