@@ -16,11 +16,11 @@
         return service;
 
         function GetAll(sukid) {
-            return $http.get(`http://15.206.35.51/api/user/plant/message/list/?sku=${sukid}`).then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(`http://15.206.35.51:81/api/user/plant/message/list/?sku=${sukid}`).then(handleSuccess, handleError('Error getting all users'));
         }
 
         function GetAllSku() {
-            return $http.get(`http://15.206.35.51/api/skuid/list/`).then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(`http://15.206.35.51:81/api/skuid/list/`).then(handleSuccess, handleError('Error getting all users'));
         }
 
 

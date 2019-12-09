@@ -44,7 +44,7 @@
         let bw = new Array();
         $scope.series = ['Upper Limit', 'SUK 1', 'Lower'];
         $scope.data.length = 0;
-        $scope.labels.length=0;
+        $scope.labels.length = 0;
 
 
         angular.forEach($scope.SkuList, function (value, key) {
@@ -56,6 +56,39 @@
         });
 
         angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });
+        angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });
+        angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });
+        angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });angular.forEach(users.data, function (value, key) {
+          ul.push($scope.ul)
+          bw.push(value.box_weight)
+          ll.push($scope.ll)
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+        });angular.forEach(users.data, function (value, key) {
           ul.push($scope.ul)
           bw.push(value.box_weight)
           ll.push($scope.ll)
@@ -83,6 +116,8 @@
 
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.options = {
+      responsive: true,
+        maintainAspectRatio: true,
       legend: {
         display: false,
         labels: {
@@ -114,16 +149,25 @@
     };
 
 
-    $scope.pielabels = ["Ok", "Overweight", "Underweight","Rejected"];
-    $scope.piedata = [30, 40, 10,20];
+    $scope.width = '';
+    $scope.height = '100';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      $scope.width = '100';
+      $scope.height = '100';
+    }
+
+    $scope.pielabels = ["Ok", "Overweight", "Underweight", "Rejected"];
+    $scope.piedata = [30, 40, 10, 20];
     $scope.pieoptions = {
+      responsive: true,
+      barValueSpacing: 2,
       legend: {
         display: true,
         labels: {
           fontColor: 'rgb(255, 99, 132)'
         }
       },
-     
+
     };
 
 

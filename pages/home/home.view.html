@@ -130,11 +130,6 @@
 
     </div>
     <div class="row">
-
-
-
-
-
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header with-elements">
@@ -149,7 +144,7 @@
                 </div>
                 <div class="card-body">
 
-                    <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                    <canvas id="line" width="{{width}}" height="{{height}}" class="chart chart-line" chart-data="data" chart-labels="labels"
                         chart-series="series" chart-options="options" chart-dataset-override="datasetOverride"
                         chart-click="onClick">
                     </canvas>
@@ -175,31 +170,31 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead class="thead-primary">
-                            <tr>
-                                <th>Unit Name</th>
-                                <th>Count</th>
-                                <th>Over/wt</th>
-                                <th>Under/wt</th>
-                                <th>Rejected</th>
-                                <th>On Target</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in SkuList">
-                                <td>{{item.name}}</td>
-                                <td>{{0}}</td>
-                                <td>{{item.ul}}</td>
-                                <td>{{item.ll}}</td>
-                                <td>{{0}}</td>
-                                <td>{{0}}</td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>Unit Name</th>
+                                    <th>Count</th>
+                                    <th>Over/wt</th>
+                                    <th>Under/wt</th>
+                                    <th>Rejected</th>
+                                    <th>On Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in SkuList">
+                                    <td>{{item.name}}</td>
+                                    <td>{{0}}</td>
+                                    <td>{{item.ul}}</td>
+                                    <td>{{item.ll}}</td>
+                                    <td>{{0}}</td>
+                                    <td>{{0}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                        </tbody>
-                    </table>
-
-
+                    </div>
                     <div hidden class="card-datatable table-responsive">
                         <table class="datatables-demo table table-striped table-bordered">
                             <thead>
@@ -240,14 +235,12 @@
                                     <td class="center">6</td>
                                     <td class="center">A</td>
                                 </tr>
-                               
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="row">
@@ -256,20 +249,18 @@
                 <div class="card-header with-elements">
                     <h6 class="card-header-title mb-0">SKU Pie Chart</h6>
                     <div class="card-header-elements ml-auto">
-                        
                         <select id="selectskupie" ng-model="selectsku" ng-change="changeSku(selectsku)"
                             class="btn btn-default" data-style="btn-default">
                             <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
                         </select>
-
                     </div>
                 </div>
                 <div class="card-body">
-
-                    <canvas width="300" height="100" id="pie" class="chart chart-pie" chart-data="piedata"
-                        chart-labels="pielabels" chart-options="pieoptions">
-                    </canvas>
-
+                    
+                        <canvas id="pie" width="{{width}}" height="{{height}}" class="chart chart-pie" chart-data="piedata" chart-labels="pielabels"
+                            chart-options="pieoptions">
+                        </canvas>
+               
                 </div>
             </div>
         </div>
