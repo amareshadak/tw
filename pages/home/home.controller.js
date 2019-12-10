@@ -61,39 +61,7 @@
           ll.push($scope.ll)
           $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
         });
-        angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });
-        angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });
-        angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });angular.forEach(users.data, function (value, key) {
-          ul.push($scope.ul)
-          bw.push(value.box_weight)
-          ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
-        });
+       
         $scope.data.push(ul);
         $scope.data.push(bw);
         $scope.data.push(ll);
@@ -104,11 +72,6 @@
     $scope.changeSku = (sukid) => {
       loadChartData(sukid);
     }
-
-
-
-
-
 
     $scope.onClick = function (points, evt) {
       console.log(points, evt);

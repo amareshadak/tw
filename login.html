@@ -8,9 +8,12 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="Bhumlu Bootstrap admin template made using Bootstrap 4, it has tons of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
-    <meta name="keywords" content="Bhumlu, bootstrap admin template, bootstrap admin panel, bootstrap 4 admin template, admin template">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description"
+        content="Bhumlu Bootstrap admin template made using Bootstrap 4, it has tons of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords"
+        content="Bhumlu, bootstrap admin template, bootstrap admin panel, bootstrap 4 admin template, admin template">
     <meta name="author" content="Srthemesvilla" />
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -33,10 +36,116 @@
     <!-- Libs -->
     <link rel="stylesheet" href="assets/libs/perfect-scrollbar/perfect-scrollbar.css">
     <!-- Page -->
+    <link rel="stylesheet" href="app-content/app.css">
     <link rel="stylesheet" href="assets/css/pages/authentication.css">
+    <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+    <!-- / Content -->
+    <!-- / Content -->
+    <!-- angular core -->
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-animate.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+    <script src="assets/libs/chartjs/chartjs.js"></script>
+    <script src="assets/libs/chartjs/angular-chart.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+    <!-- Core scripts -->
+    <script src="assets/js/pace.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/libs/popper/popper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/sidenav.js"></script>
+    <script src="assets/js/layout-helpers.js"></script>
+    <script src="assets/js/material-ripple.js"></script>
+
+    <!-- Libs -->
+    <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <!-- Demo -->
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/analytics.js"></script>
+
+    <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script>
+        var app = angular.module('login', ['toastr', 'ngAnimate']);
+        app.service('APIInterceptor', [function () {
+            var service = this;
+            service.request = function (config) {
+                config.headers.Accept = 'application/json';
+                return config;
+            };
+        }]);
+
+        app.config(function ($httpProvider) {
+            //Enable cross domain calls
+            $httpProvider.defaults.useXDomain = true;
+            //Remove the header used to identify ajax call  that would prevent CORS from working
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+            $httpProvider.interceptors.push('APIInterceptor');
+        });
+
+        app.run(function ($rootScope, $location, $http) {
+            if(localStorage.getItem('tw_auth_details') != null)
+            {
+                location.href = 'index.html'
+            }
+        });
+
+        app.controller('loginController', function ($scope, $http,toastr) {
+            $scope.vm = {};
+            localStorage.twusers = null;
+            $scope.vm.login = login;
+
+            function login() {
+                $scope.vm.dataLoading = true;
+                let data = {
+                    "username": $scope.vm.username,
+                    "password": $scope.vm.password
+                };
+                $http.post('http://15.206.35.51:81/rest-auth/login/', data).then(function (response) {
+                    let jd = JSON.stringify({
+                        username : $scope.vm.username,
+                        token : response.data.key
+                    })
+                    localStorage.setItem('tw_auth_details',jd);
+                    
+                    $scope.vm.dataLoading = false;
+                    window.location = 'index.html';
+                }, function (response) {
+                    toastr.info('Username or password is incorrect','Invalid Credentials');
+                    $scope.vm.dataLoading = false;
+                });
+
+
+
+
+
+
+
+                // AuthenticationService.Login(vm.username, vm.password, function (response) {
+                //     if (response.success) {
+                //         AuthenticationService.SetCredentials(vm.username, vm.password);
+                //         $location.path('/');
+                //     } else {
+                //         FlashService.Toaster(response.message, 'error', 'Invalid Credentials')
+                //         // FlashService.Error(response.message);
+                //         vm.dataLoading = false;
+                //     }
+                // });
+            };
+        });
+    </script>
+
 </head>
 
-<body>
+<body ng-app="login" ng-controller="loginController">
     <!-- [ Preloader ] Start -->
     <div class="page-loader">
         <div class="bg-primary"></div>
@@ -44,7 +153,8 @@
     <!-- [ Preloader ] End -->
 
     <!-- [ Content ] Start -->
-    <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4" style="background-image: url('assets/img/bg/21.jpg');">
+    <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4"
+        style="background-image: url('assets/img/bg/21.jpg');">
         <div class="ui-bg-overlay bg-dark opacity-25"></div>
 
         <div class="authentication-inner py-5">
@@ -65,18 +175,23 @@
                     <h5 class="text-center text-muted font-weight-normal mb-4">Login to Your Account</h5>
 
                     <!-- Form -->
-                    <form action="index.html">
+                    <form name="form" ng-submit="vm.login()" role="form">
                         <div class="form-group">
                             <label class="form-label">User ID</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="username" id="username" class="form-control"
+                                ng-class="{ 'is-invalid': form.username.$dirty && form.username.$error.required }"
+                                ng-model="vm.username" required />
+                            <small ng-show="form.username.$dirty && form.username.$error.required"
+                                class="invalid-feedback">Username is required</small>
                             <div class="clearfix"></div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label d-flex justify-content-between align-items-end">
-                                <span>Password</span>
-                                <a href="pages_authentication_password-reset.html" class="d-block small">Forgot password?</a>
-                            </label>
-                            <input type="password" class="form-control">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control"
+                                ng-class="{ 'is-invalid': form.password.$dirty && form.password.$error.required }"
+                                ng-model="vm.password" required />
+                            <small ng-show="form.password.$dirty && form.password.$error.required"
+                                class="invalid-feedback">Password is required</small>
                             <div class="clearfix"></div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center m-0">
@@ -84,7 +199,11 @@
                                 <input type="checkbox" class="custom-control-input">
                                 <span class="custom-control-label">Remember me</span>
                             </label>
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading"
+                                class="btn btn-primary">Sign
+                                In</button>
+                            <img ng-if="vm.dataLoading"
+                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         </div>
                     </form>
                     <!-- [ Form ] End -->
@@ -93,29 +212,13 @@
                 <div class="card-footer py-3 px-4 px-sm-5">
                     <div class="text-center text-muted">
                         Don't have an account yet?
-                        <a href="pages_authentication_register-v2.html">Sign Up</a>
+                        <a href="javascript:void(0)">Sign Up</a>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <!-- / Content -->
-
-    <!-- Core scripts -->
-    <script src="assets/js/pace.js"></script>
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/libs/popper/popper.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/sidenav.js"></script>
-    <script src="assets/js/layout-helpers.js"></script>
-    <script src="assets/js/material-ripple.js"></script>
-
-    <!-- Libs -->
-    <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <!-- Demo -->
-    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
 
 </body>
 

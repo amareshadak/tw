@@ -44,23 +44,30 @@
 
     run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
     function run($rootScope, $location, $cookies, $http) {
-        // keep user logged in after page refresh
-        $rootScope.globals = $cookies.getObject('globals') || {};
-        $rootScope.isLogin = false;
 
-        if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+        if (localStorage.getItem('tw_auth_details') == null) {
+            window.location = 'login.html';
+        }
+        else {
+            try {
+                $rootScope.username = JSON.parse(localStorage.getItem('tw_auth_details')).username;
+            } catch (error) {
+                localStorage.removeItem('tw_auth_details');
+                window.location = 'login.html';
+            }
         }
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-            var loggedIn = $rootScope.globals.currentUser;
-            if (restrictedPage && !loggedIn) {
-                $location.path('/login');
+            if (localStorage.getItem('tw_auth_details') == null) {
+                window.location = 'login.html';
             }
-            else { 
-                $rootScope.isLogin = true;
+            else {
+                try {
+                    $rootScope.username = JSON.parse(localStorage.getItem('tw_auth_details')).username;
+                } catch (error) {
+                    localStorage.removeItem('tw_auth_details');
+                    window.location = 'login.html';
+                }
             }
         });
     }
@@ -71,8 +78,12 @@
 angular.module('app').service('APIInterceptor', [function() {
     var service = this;
 
-    service.request = function(config) {
-        config.headers.Authorization= 'Token ede31ff3350e15f182e9eec1412d4a9c861ddfca';
+    service.request = function (config) {
+        if (localStorage.getItem('tw_auth_details') == null) {
+            window.location = 'login.html';
+        }
+        config.headers.Authorization = `Token ${JSON.parse(localStorage.getItem('tw_auth_details')).token}`;
+        config.headers.Accept = 'application/json';
         return config;
     };
 }]);

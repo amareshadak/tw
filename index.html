@@ -85,7 +85,7 @@
             <!-- [ Layout container ] Start -->
             <div class="layout-container">
                 <!-- [ Layout navbar ( Header ) ] Start -->
-                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-primary container-p-x"
+                <nav ng-controller="headerController" class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-primary container-p-x"
                     id="layout-navbar">
                     <!-- Brand demo (see assets/css/demo/demo.css) -->
                     <a href="index-2.html" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
@@ -126,14 +126,14 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                         <img src="assets/img/avatars/1.png" alt class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">Cindy Deitch</span>
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0" ng-cloak>{{username}}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="javascript:" class="dropdown-item">
+                                    <a href="javascript:void(0)" class="dropdown-item">
                                         <i class="feather icon-user text-muted"></i> &nbsp; My profile</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="#!/login" class="dropdown-item">
+                                    <a href="javascript:void(0)" ng-click="logout()" class="dropdown-item">
                                         <i class="feather icon-power text-danger"></i> &nbsp; Log Out</a>
                                 </div>
                             </div>
@@ -229,6 +229,7 @@
     <script src="pages/home/home.controller.js"></script>
     <script src="pages/login/login.controller.js"></script>
     <script src="pages/register/register.controller.js"></script>
+    <script src="shared/header.controller.js"></script>
 
     <script>
         $(function() {
