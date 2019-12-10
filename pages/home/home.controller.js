@@ -39,7 +39,7 @@
     function loadChartData(sukid) {
       ApiService.GetAll(sukid).then(function (sukdata) {
         console.log(sukdata)
-        
+
         $scope.location = sukdata.Location;
         $scope.plant_name = sukdata.plant_name;
         let ul = new Array();
@@ -62,7 +62,7 @@
           ul.push($scope.ul)
           bw.push(value.box_weight)
           ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY m:h A'));
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY hh:mm A'));
         });
        
         $scope.data.push(ul);
