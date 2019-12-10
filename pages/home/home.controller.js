@@ -37,12 +37,15 @@
     $scope.ul = 0;
     $scope.ll = 0;
     function loadChartData(sukid) {
-      ApiService.GetAll(sukid).then(function (users) {
-        console.log(users)
+      ApiService.GetAll(sukid).then(function (sukdata) {
+        console.log(sukdata)
+        
+        $scope.location = sukdata.Location;
+        $scope.plant_name = sukdata.plant_name;
         let ul = new Array();
         let ll = new Array();
         let bw = new Array();
-        $scope.series = ['Upper Limit', 'SUK 1', 'Lower'];
+        $scope.series = ['Upper Limit', 'SUK 1', 'Lower'];                    
         $scope.data.length = 0;
         $scope.labels.length = 0;
 
@@ -55,11 +58,11 @@
 
         });
 
-        angular.forEach(users.data, function (value, key) {
+        angular.forEach(sukdata.data, function (value, key) {
           ul.push($scope.ul)
           bw.push(value.box_weight)
           ll.push($scope.ll)
-          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY'));
+          $scope.labels.push(moment(new Date(value.timestamp_created)).format('MM/DD/YYYY m:h A'));
         });
        
         $scope.data.push(ul);
