@@ -185,10 +185,10 @@
                             <tbody>
                                 <tr ng-repeat="item in SkuList">
                                     <td>{{item.name}}</td>
-                                    <td>{{0}}</td>
+                                    <td>{{item.total_msg}}</td>
                                     <td>{{item.ul}}</td>
                                     <td>{{item.ll}}</td>
-                                    <td>{{0}}</td>
+                                    <td>{{item.total_msg_reject}}</td>
                                     <td>{{0}}</td>
                                 </tr>
                             </tbody>
@@ -249,7 +249,7 @@
                 <div class="card-header with-elements">
                     <h6 class="card-header-title mb-0">SKU Pie Chart</h6>
                     <div class="card-header-elements ml-auto">
-                        <select id="selectskupie" ng-model="selectsku" ng-change="changeSku(selectsku)"
+                        <select id="selectskupie" ng-model="selectskupie" ng-change="changeSkuPie(selectskupie)"
                             class="btn btn-default" data-style="btn-default">
                             <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
                         </select>

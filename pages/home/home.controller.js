@@ -24,9 +24,12 @@
 
     function loadAllSku() {
       ApiService.GetAllSku().then(function (sukdata) { 
+        console.log(sukdata)
         $scope.SkuList = sukdata;
         $scope.selectsku = $scope.SkuList[0].uid;
+        $scope.selectskupie = $scope.SkuList[0].uid;
         loadChartData($scope.selectsku);
+        loadPieChart($scope.selectskupie);
       });
     }
 
@@ -125,10 +128,10 @@
       $scope.height = "100";
     }
 
-    function loadPieChart() {
-      $scope.pielabels = ["Ok", "Overweight", "Underweight", "Rejected"];
-      $scope.piedata = [30, 40, 10, 20];
-      $scope.pieoptions = {
+    $scope.changeSkuPie = sukid => {
+       loadPieChart(sukid);
+    }
+ $scope.pieoptions = {
         responsive: true,
         barValueSpacing: 2,
         legend: {
@@ -138,6 +141,19 @@
           }
         }
       };
+    function loadPieChart(sukid) {
+      $scope.piedata = [];
+      $scope.pielabels = ["Ok", "Overweight", "Underweight", "Rejected"];
+      angular.forEach($scope.SkuList, function(value, key) {
+        if (value.uid == sukid) {
+          $scope.piedata.push(value.total_msg_accept)
+          $scope.piedata.push(value.ul)
+            $scope.piedata.push(value.ll)
+           $scope.piedata.push(value.total_msg_reject)
+          }
+        });
+      
+     
     }
 
     $scope.datatb = [
