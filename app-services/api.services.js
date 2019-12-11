@@ -20,7 +20,16 @@
         }
 
         function GetAllSku() {
-            return $http.get(`http://15.206.35.51:81/api/skuid/list/`).then(handleSuccess, handleError('Error getting all users'));
+            // http: return $http
+            //   .get(`http://15.206.35.51:81/api/skuid/list/`)
+            //     .then(handleSuccess, handleError("Error getting all users"));
+            
+            http: return $http
+                .get(`http://15.206.35.51:81/api/skuid/list/v2/?day=30`)
+                .then(
+                    handleSuccess,
+                    handleError("Error getting all users")
+                );
         }
 
 
