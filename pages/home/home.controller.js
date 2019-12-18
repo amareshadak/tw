@@ -11,7 +11,7 @@
   ];
   function HomeController(UserService, $rootScope, $scope, ApiService) {
     localStorage.users = `[{"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}]`;
-
+    $scope.filter = 'hour';
     $scope.isLoad = 1;
     initController();
 
@@ -28,7 +28,7 @@
         $scope.SkuList = sukdata;
         $scope.selectsku = $scope.SkuList[0].uid;
         $scope.selectskupie = $scope.SkuList[0].uid;
-        loadChartData($scope.selectsku);
+        $scope.loadChartData($scope.selectsku);
         loadPieChart($scope.selectskupie);
       });
     }
@@ -38,12 +38,31 @@
     $scope.data = new Array();
     $scope.ul = 0;
     $scope.ll = 0;
-
-
-
     
-    function loadChartData(sukid) {
-      ApiService.GetAll(sukid).then(function(sukdata) {
+    $scope.loadChartData = () => {
+      let sukid = $scope.selectsku;
+      let service = null;
+      if ($scope.filter == 'hour') {
+        service = ApiService.getChartByHours(sukid, 1);
+      }
+      else if ($scope.filter == 'today') {
+        service = ApiService.getChartByDays(sukid, 1);
+      }
+      else if ($scope.filter == 'week') {
+        service = ApiService.getChartByDays(sukid, 7);
+      }
+      else if ($scope.filter == 'month') {
+        service = ApiService.getChartByDays(sukid, 30);
+      }
+      else {
+        let t1 = $('#b-m-dtp-date1').val().replace(/\//g, '')
+        let t2 = $('#b-m-dtp-date2').val().replace(/\//g, '')
+        service = ApiService.getChartByDate(sukid, t1,t2);
+      }
+
+
+
+      service.then(function(sukdata) {
         console.log(sukdata);
 
         $scope.location = sukdata.Location;
@@ -62,6 +81,7 @@
           }
         });
 
+        $scope.skuDetailsData = sukdata.data;
         angular.forEach(sukdata.data, function(value, key) {
           ul.push($scope.ul);
           bw.push(value.box_weight);
@@ -77,49 +97,59 @@
         $scope.data.push(bw);
         $scope.data.push(ll);
         // console.log($scope.data)
+
+
+
+
+
+
+        $scope.datasetOverride = [{ yAxisID: "y-axis-1" }];
+        $scope.options = {
+          responsive: true,
+          maintainAspectRatio: true,
+          legend: {
+            display: false,
+            labels: {
+              fontColor: "rgb(255, 99, 132)"
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                type: "linear",
+                display: true,
+                position: "left",
+                id: "y-axis-1",
+                gridLines: {
+                  display: false
+                },
+                labels: {
+                  show: true
+                },
+                ticks: {
+                  max: $scope.ul + 200,
+                  min: $scope.ll - 5,
+                  stepSize: 25
+                }
+              }
+            ]
+          }
+        };
       });
+
+      // $(".datatables-demo").dataTable();
     }
 
     $scope.changeSku = sukid => {
-      loadChartData(sukid);
+      $scope.loadChartData();
     };
 
     $scope.onClick = function(points, evt) {
       console.log(points, evt);
     };
 
-    $scope.datasetOverride = [{ yAxisID: "y-axis-1" }];
-    $scope.options = {
-      responsive: true,
-      maintainAspectRatio: true,
-      legend: {
-        display: false,
-        labels: {
-          fontColor: "rgb(255, 99, 132)"
-        }
-      },
-      scales: {
-        yAxes: [
-          {
-            type: "linear",
-            display: true,
-            position: "left",
-            id: "y-axis-1",
-            gridLines: {
-              display: false
-            },
-            labels: {
-              show: true
-            },
-            ticks: {
-              max: 350,
-              min: 100,
-              stepSize: 50
-            }
-          }
-        ]
-      }
-    };
+
+    
 
     $scope.width = "";
     $scope.height = "100";
@@ -151,8 +181,8 @@
       angular.forEach($scope.SkuList, function(value, key) {
         if (value.uid == sukid) {
           $scope.piedata.push(value.total_msg_accept)
-          $scope.piedata.push(value.ul)
-            $scope.piedata.push(value.ll)
+          $scope.piedata.push(value.total_over_weight);
+            $scope.piedata.push(value.total_under_weight);
            $scope.piedata.push(value.total_msg_reject)
           }
         });
@@ -245,6 +275,13 @@
       ]
     };
 
-    $(".datatables-demo").dataTable();
+    
+    $('.datepicker').datepicker({
+      format: "dd/mm/yyyy",
+      autoclose: true,
+  }).on('changeDate', function (ev) {
+      $(this).datepicker('hide');
+  });
+ 
   }
 })();
