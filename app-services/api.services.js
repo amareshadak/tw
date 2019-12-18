@@ -9,14 +9,15 @@
         ApiService.$inject = ['$http'];
     function ApiService($http) {
         var service = {};
-
         service.GetAll = GetAll;
         service.GetAllSku = GetAllSku;
-      
         return service;
 
         function GetAll(sukid) {
-            return $http.get(`http://15.206.35.51:81/api/user/plant/message/list/?sku=${sukid}`).then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(`http://15.206.35.51:81/api/user/plant/message/list/?sku=${sukid}&type=h&hours=1`)
+                .then(handleSuccess, handleError("Error getting all users"));
+            
+            // http://15.206.35.51:81/api/user/plant/message/list/v2/?sku=294482956488&type=d&days=1
         }
 
         function GetAllSku() {

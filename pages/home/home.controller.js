@@ -38,6 +38,10 @@
     $scope.data = new Array();
     $scope.ul = 0;
     $scope.ll = 0;
+
+
+
+    
     function loadChartData(sukid) {
       ApiService.GetAll(sukid).then(function(sukdata) {
         console.log(sukdata);
@@ -47,7 +51,7 @@
         let ul = new Array();
         let ll = new Array();
         let bw = new Array();
-        $scope.series = ["Upper Limit", "SUK 1", "Lower"];
+        $scope.series = ["Upper Limit", "SUK", "Lower Limit"];
         $scope.data.length = 0;
         $scope.labels.length = 0;
 
