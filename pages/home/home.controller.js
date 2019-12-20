@@ -129,7 +129,7 @@
                 ticks: {
                   max: $scope.ul + 200,
                   min: $scope.ll - 5,
-                  stepSize: 25
+                  stepSize: $scope.ul / 25
                 }
               }
             ]
