@@ -72,8 +72,8 @@
                     <h6 class="card-header-title mb-0">SKU Line Chart</h6>
                     <div class="card-header-elements ml-auto">
 
-                        <select id="selectsku" ng-model="selectsku" ng-change="changeSku()"
-                            class="btn btn-default" data-style="btn-default">
+                        <select id="selectsku" ng-model="selectsku" ng-change="changeSku()" class="btn btn-default"
+                            data-style="btn-default">
                             <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
                         </select>
                     </div>
@@ -81,15 +81,20 @@
                 <div class="card-body">
 
                     <div class="demo-inline-spacing mt-3 text-center">
-                        <button type="button" ng-click="filter='hour'; loadChartData()" ng-disabled="filter=='hour'" class="btn btn-primary waves-effect">Hour</button>
-                        <button type="button" ng-click="filter='today'; loadChartData()" ng-disabled="filter=='today'" class="btn btn-primary waves-effect">Today</button>
-                        <button type="button" ng-click="filter='week'; loadChartData()" ng-disabled="filter=='week'" class="btn btn-primary waves-effect">Last Week</button>
-                        <button type="button" ng-click="filter='month'; loadChartData()" ng-disabled="filter=='month'" class="btn btn-primary waves-effect">Last Month</button>
-                        <button type="button" ng-click="filter='custom'" ng-disabled="filter=='custom'" class="btn btn-primary waves-effect hidden">Custom</button>
+                        <button type="button" ng-click="filter='hour'; loadChartData()" ng-disabled="filter=='hour'"
+                            class="btn btn-primary waves-effect">Hour</button>
+                        <button type="button" ng-click="filter='today'; loadChartData()" ng-disabled="filter=='today'"
+                            class="btn btn-primary waves-effect">Today</button>
+                        <button type="button" ng-click="filter='week'; loadChartData()" ng-disabled="filter=='week'"
+                            class="btn btn-primary waves-effect">Last Week</button>
+                        <button type="button" ng-click="filter='month'; loadChartData()" ng-disabled="filter=='month'"
+                            class="btn btn-primary waves-effect">Last Month</button>
+                        <button type="button" ng-click="filter='custom'" ng-disabled="filter=='custom'"
+                            class="btn btn-primary waves-effect hidden">Custom</button>
 
                     </div>
 
-                    <div class="demo-inline-spacing mt-3 text-center" ng-show="filter=='custom'"> 
+                    <div class="demo-inline-spacing mt-3 text-center" ng-show="filter=='custom'">
                         <!-- <div class="row d-lg-none">
                             <div class="form-group col-md-4">
                                 <input type="text" id="b-m-dtp-date" class="form-control" placeholder="Form date">
@@ -104,22 +109,24 @@
                                 <div class="clearfix"></div>
                             </div>
                         </div> -->
-                           
+
                         <div class="row justify-content-center">
                             <div class="col-2">
-                                <input type="text" id="b-m-dtp-date1" class="form-control datepicker" placeholder="Form date">
+                                <input type="text" id="b-m-dtp-date1" class="form-control datepicker"
+                                    placeholder="Form date">
                             </div>
                             <div class="col-2">
-                                <input type="text" id="b-m-dtp-date2" class="form-control datepicker" placeholder="Form date">
+                                <input type="text" id="b-m-dtp-date2" class="form-control datepicker"
+                                    placeholder="Form date">
                             </div>
                             <div class="col-1">
                                 <button type="button" ng-click="loadChartData()" class="btn btn-primary">Serch</button>
                             </div>
-                          </div>
+                        </div>
                     </div>
 
-                    
-                  
+
+
 
                     <canvas id="line" style="height: 20rem" class="chart chart-line" chart-data="data"
                         chart-labels="labels" chart-series="series" chart-options="options"
@@ -131,52 +138,134 @@
 
     </div>
 
-    <div class="row">
+    <div class="row"  ng-controller="chartTableContoller">
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header with-elements">
                     <h6 class="card-header-title mb-0">SKU Line Details</h6>
                     <div class="card-header-elements ml-auto">
-                        <label hidden class="text m-0">
-                            <span class="text-light text-tiny font-weight-semibold align-middle">SHOW STATS</span>
-                            <span class="switcher switcher-sm d-inline-block align-middle mr-0 ml-2"><input type="checkbox"
-                                    class="switcher-input" checked=""><span class="switcher-indicator"><span
-                                        class="switcher-yes"></span><span class="switcher-no"></span></span></span>
-                        </label>
+
+                        <select id="selectsku" ng-model="selectsku" ng-change="changeSku()" class="btn btn-default"
+                            data-style="btn-default">
+                            <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive" style="height: 300px !important; overflow: auto;">
-                        <table  class="datatables-demo table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Sku Id</th>
-                                    <th>Machine Id</th>
-                                    <th>Box Weight</th>
-                                    <th>Box Count</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody >
-                                <tr ng-repeat="item in skuDetailsData" class="odd gradeX">
-                                    <td>{{item.sku}}</td>
-                                    <td>{{item.machine}}</td>
-                                    <td>{{item.box_weight}}</td>
-                                    <td>{{item.box_count}}</td>
-                                    <td class="center"> {{iten.pass_status}}</td>
-                                    <td class="center">{{item.timestamp_created}}</td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+
+                    <div class="demo-inline-spacing mt-3 text-center">
+                        <button type="button" ng-click="filter='hour'; loadChartData()" ng-disabled="filter=='hour'"
+                            class="btn btn-primary waves-effect">Hour</button>
+                        <button type="button" ng-click="filter='today'; loadChartData()" ng-disabled="filter=='today'"
+                            class="btn btn-primary waves-effect">Today</button>
+                        <button type="button" ng-click="filter='week'; loadChartData()" ng-disabled="filter=='week'"
+                            class="btn btn-primary waves-effect">Last Week</button>
+                        <button type="button" ng-click="filter='month'; loadChartData()" ng-disabled="filter=='month'"
+                            class="btn btn-primary waves-effect">Last Month</button>
+                        <button type="button" ng-click="filter='custom'" ng-disabled="filter=='custom'"
+                            class="btn btn-primary waves-effect hidden">Custom</button>
+
                     </div>
+
+                    <div class="demo-inline-spacing mt-3 text-center" ng-show="filter=='custom'">
+                        <!-- <div class="row d-lg-none">
+                                <div class="form-group col-md-4">
+                                    <input type="text" id="b-m-dtp-date" class="form-control" placeholder="Form date">
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" placeholder="To date">
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <button type="button" class="btn btn-primary">Serch</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div> -->
+
+                        <div class="row justify-content-center">
+                            <div class="col-2">
+                                <input type="text" id="b-m-dtp-date1" class="form-control datepicker"
+                                    placeholder="Form date">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="b-m-dtp-date2" class="form-control datepicker"
+                                    placeholder="Form date">
+                            </div>
+                            <div class="col-1">
+                                <button type="button" ng-click="loadChartData()" class="btn btn-primary">Serch</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="form-inline">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th ng-click="sort('sku')">Sku Id
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='sku'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('machine')">Machine Id
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='machine'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('box_weight')">Box Weight
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='box_weight'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('box_count')">Box Count
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='box_count'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('pass_status')">Status
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='pass_status'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('timestamp_created')">Date
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='timestamp_created'"
+                                        ng-class="{'fas fa-angle-up':reverse,'fas fa-angle-down':!reverse}"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="user in skuDetailsData| toArray |orderBy:sortKey:reverse | filter:search | itemsPerPage:5">
+                                <td>{{user.sku}}</td>
+                                <td>{{user.machine}}</td>
+                                <td>{{user.box_weight}}</td>
+                                <td>{{user.box_count}}</td>
+                                <td>{{user.pass_status}}</td>
+                                <td>{{user.timestamp_created | date : 'short'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="pull-right">
+                        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    
                 </div>
             </div>
         </div>
+
     </div>
 
-
+   
     <div class="row">
         <div class="col-lg-12">
             <div class="card mb-4">
@@ -218,7 +307,7 @@
                         </table>
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>
