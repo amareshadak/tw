@@ -24,7 +24,6 @@
 
     function loadAllSku() {
       ApiService.GetAllSku().then(function (sukdata) { 
-        console.log(sukdata)
         $scope.SkuList = sukdata;
         $scope.selectsku = $scope.SkuList[0].uid;
         $scope.selectskupie = $scope.SkuList[0].uid;
@@ -63,8 +62,6 @@
 
 
       service.then(function(sukdata) {
-        console.log(sukdata);
-
         $scope.location = sukdata.Location;
         $scope.plant_name = sukdata.plant_name;
         let ul = new Array();
@@ -96,12 +93,6 @@
         $scope.data.push(ul);
         $scope.data.push(bw);
         $scope.data.push(ll);
-        // console.log($scope.data)
-
-
-
-
-
 
         $scope.datasetOverride = [{ yAxisID: "y-axis-1" }];
         $scope.options = {
@@ -145,7 +136,7 @@
     };
 
     $scope.onClick = function(points, evt) {
-      console.log(points, evt);
+    
     };
 
 

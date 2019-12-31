@@ -313,6 +313,64 @@
         </div>
     </div>
 
+
+    <div class="row"  ng-controller="piechartController">
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header with-elements">
+                    <h6 class="card-header-title mb-0">SKU Pie Chart</h6>
+                    <div class="card-header-elements ml-auto">
+
+                        <select id="selectsku" ng-model="selectsku" ng-change="changeSku()" class="btn btn-default"
+                            data-style="btn-default">
+                            <option ng-repeat="item in SkuList" value="{{item.uid}}">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="demo-inline-spacing mt-3 text-center">
+                        <button type="button" ng-click="filter='hour'; loadChartData()" ng-disabled="filter=='hour'"
+                            class="btn btn-primary waves-effect">Hour</button>
+                        <button type="button" ng-click="filter='today'; loadChartData()" ng-disabled="filter=='today'"
+                            class="btn btn-primary waves-effect">Today</button>
+                        <button type="button" ng-click="filter='week'; loadChartData()" ng-disabled="filter=='week'"
+                            class="btn btn-primary waves-effect">Last Week</button>
+                        <button type="button" ng-click="filter='month'; loadChartData()" ng-disabled="filter=='month'"
+                            class="btn btn-primary waves-effect">Last Month</button>
+                        <button type="button" ng-click="filter='custom'" ng-disabled="filter=='custom'"
+                            class="btn btn-primary waves-effect hidden">Custom</button>
+
+                    </div>
+
+                    <div class="demo-inline-spacing mt-3 text-center" ng-show="filter=='custom'">
+                    
+                        <div class="row justify-content-center">
+                            <div class="col-2">
+                                <input type="text" id="b-m-dtp-date1" class="form-control datepicker"
+                                    placeholder="Form date">
+                            </div>
+                            <div class="col-2">
+                                <input type="text" id="b-m-dtp-date2" class="form-control datepicker"
+                                    placeholder="Form date">
+                            </div>
+                            <div class="col-1">
+                                <button type="button" ng-click="loadChartData()" class="btn btn-primary">Serch</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <canvas id="pie" width="{{width}}" height="{{height}}" class="chart chart-pie" chart-data="piedata"
+                        chart-labels="pielabels" chart-options="pieoptions">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card mb-4">
