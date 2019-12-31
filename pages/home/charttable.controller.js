@@ -13,6 +13,7 @@
         $scope.filter = "hour";
         $scope.isLoad = 1;
         $scope.skuDetailsData = [];
+        $scope.TableDataLength = 10;
         $scope.sort = function(keyname) {
           $scope.sortKey = keyname; //set the sortKey to the param passed
           $scope.reverse = !$scope.reverse; //if true make it false and vice versa
