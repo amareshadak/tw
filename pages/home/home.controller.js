@@ -94,7 +94,14 @@
         $scope.data.push(bw);
         $scope.data.push(ll);
 
-        $scope.datasetOverride = [{ yAxisID: "y-axis-1" }];
+        $scope.datasetOverride = [
+          {
+            yAxisID: "y-axis-1",
+            borderWidth: [1,2],
+            backgroundColor: ['#FF4242', '#2291ff']
+          }
+        ];
+        
         $scope.options = {
           responsive: true,
           maintainAspectRatio: true,
